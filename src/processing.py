@@ -1,19 +1,21 @@
-def filter_by_state(operations: list[dict], state: str = "EXECUTED") -> list[dict]:
-    result = []
-    for operation in operations:
-        if "state" in operation and operation["state"] == state:
-            result.append(operation)
-    return result
+from typing import Any
 
-
-"""
+def filter_by_state(operations: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict[str, Any]]:
+    """
     Возвращает новый список словарей, у которых значение ключа 'state'
     соответствует переданному параметру state.
 
     :param operations: список словарей с данными об операциях
     :param state: значение состояния для фильтрации (по умолчанию 'EXECUTED')
     :return: отфильтрованный список словарей
-"""
+    """
+    result: list[dict[str, Any]] = []
+
+    for operation in operations:
+        if "state" in operation and operation["state"] == state:
+            result.append(operation)
+
+    return result
 
 
 # Входные данные
@@ -31,7 +33,9 @@ result = filter_by_state(operations)
 print(result)
 
 
-def sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
+from typing import Any
+
+def sort_by_date(operations: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
     """
     Сортирует список словарей по ключу 'date'.
 
@@ -48,9 +52,8 @@ def sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
     return sorted(operations, key=lambda op: op["date"], reverse=reverse)
     # key=lambda op: op["date"] означает:    «Сортируй элементы по значению поля date»
 
+
     # Входные данные
-
-
 operations = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
