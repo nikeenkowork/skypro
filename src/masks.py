@@ -11,7 +11,6 @@ def get_mask_card_number(card_number: int | str) -> str:
     return bank_card
 
 
-
 def get_mask_account(account_number: int | str) -> str:
     """
     Функция маскирует номер банковского счета.
@@ -20,5 +19,4 @@ def get_mask_account(account_number: int | str) -> str:
 
     if not account_str:
         return ""
-
     return f"**{account_str[-4:]}"
