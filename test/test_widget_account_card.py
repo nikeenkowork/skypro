@@ -12,7 +12,7 @@ from src.widget import mask_account_card
         ("MasterCard 5555666677778888", "MasterCard **** **** **** 8888"),
     ],
 )
-def test_mask_account_card_for_cards(data, expected):
+def test_mask_account_card_for_cards(data: str, expected: str) -> None:
     assert mask_account_card(data) == expected
 
 
@@ -24,7 +24,7 @@ def test_mask_account_card_for_cards(data, expected):
         ("Счет 1234567890123456", "Счет **3456"),
     ],
 )
-def test_mask_account_card_for_accounts(data, expected):
+def test_mask_account_card_for_accounts(data: str, expected: str) -> None:
     assert mask_account_card(data) == expected
 
 
@@ -42,5 +42,5 @@ def test_mask_account_card_for_accounts(data, expected):
         "Карта 123456789012345",
     ],
 )
-def test_mask_account_card_invalid_data(data):
+def test_mask_account_card_invalid_data(data: str) -> None:
     assert mask_account_card(data) == "Некорректные данные"
