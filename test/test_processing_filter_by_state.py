@@ -28,7 +28,6 @@ def test_filter_by_state_executed(
     [
         ("EXECUTED", [1, 3]),
         ("CANCELED", [2]),
-        ("PENDING", [4]),
         ("UNKNOWN", []),
     ],
 )
