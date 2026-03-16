@@ -3,7 +3,7 @@ from src.masks import get_mask_account
 
 
 @pytest.fixture
-def account_data():
+def account_data() -> list[tuple[int | str, str]]:
     """Тестовые данные для проверки маскирования счета"""
     return [
         (12345678901234567890, "**7890"),   # стандартный номер
@@ -14,7 +14,7 @@ def account_data():
     ]
 
 
-def test_get_mask_account(account_data):
+def test_get_mask_account(account_data: list[tuple[int | str, str]]) -> None:
     """Проверка маскирования номера счета"""
     for account, expected in account_data:
         assert get_mask_account(account) == expected
