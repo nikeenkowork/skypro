@@ -1,4 +1,5 @@
 import pytest
+
 from src.processing import sort_by_date
 
 
@@ -11,11 +12,12 @@ def operations() -> list[dict[str, int | str]]:
         {"id": 4, "date": "2018-10-14T08:21:33.419441"},
     ]
 
+
 # Тест сортировки
 @pytest.mark.parametrize(
     "reverse, expected_ids",
     [
-        (True, [1, 4, 3, 2]),   # по убыванию
+        (True, [1, 4, 3, 2]),  # по убыванию
         (False, [2, 3, 4, 1]),  # по возрастанию
     ],
 )
@@ -44,6 +46,7 @@ def test_sort_by_date_sam() -> None:
     result_ids = [operation["id"] for operation in result]
 
     assert result_ids[0] == 3
+
 
 # Тест одинаковых дат
 def test_sort_by_date_format() -> None:

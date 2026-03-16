@@ -42,5 +42,5 @@ def test_mask_account_card_for_accounts(data: str, expected: str) -> None:
         "Карта 123456789012345",
     ],
 )
-def test_mask_account_card_invalid_data(data: str)-> None:
+def test_mask_account_card_invalid_data(data: str) -> None:
     assert mask_account_card(data) == "Некорректные данные"
