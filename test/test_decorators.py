@@ -30,6 +30,7 @@ def test_log_error(capsys):
 
 def test_log_success_to_file(tmp_path):
     from src.decorators import log
+
     log_file = tmp_path / "log.txt"
 
     @log(filename=str(log_file))

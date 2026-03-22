@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def log(filename=None):
     """
     Декоратор для логирования работы функции.
@@ -15,6 +16,7 @@ def log(filename=None):
     :param filename: имя файла для записи логов (str или None)
     :return: декоратор
     """
+
     def decorator(func):
         """
         Оборачивает функцию для добавления логирования.
@@ -22,6 +24,7 @@ def log(filename=None):
         :param func: декорируемая функция
         :return: wrapper-функция
         """
+
         @wraps(func)
         def wrapper(*args, **kwargs):
             """
@@ -45,10 +48,7 @@ def log(filename=None):
                 return result
 
             except Exception as e:
-                error_message = (
-                    f"{func.__name__} error: {type(e).__name__}, "
-                    f"inputs={args}, {kwargs}"
-                )
+                error_message = f"{func.__name__} error: {type(e).__name__}, " f"inputs={args}, {kwargs}"
 
                 print(error_message)
 
@@ -59,4 +59,5 @@ def log(filename=None):
                 return None
 
         return wrapper
+
     return decorator
