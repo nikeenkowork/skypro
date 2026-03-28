@@ -1,24 +1,21 @@
 # external_api.py
-import os
-
 import requests
-from dotenv import load_dotenv
 
-# Загружаем переменные из файла .env
-load_dotenv()
-
-API_KEY = os.getenv("API_KEY")
-BASE_URL = os.getenv("BASE_URL")
+# Прямое указание API ключа и URL
+API_KEY = "iNJjtsrCm8C6dmn9rsjbd42geeVAWmVD"
+BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"
 
 
-def convert_to_rub(amount: float, currency: str) -> float:
+def convert_transaction_to_rub(transaction: dict) -> float:
     """
-    Конвертирует сумму из валюты currency в рубли с помощью API.
+    Конвертирует транзакцию из валюты transaction['currency'] в рубли.
 
-    :param amount: сумма в исходной валюте
-    :param currency: 'USD', 'EUR' или другая валюта
+    :param transaction: словарь {"amount": число, "currency": строка}
     :return: сумма в рублях (float)
     """
+    amount = transaction.get("amount", 0)
+    currency = transaction.get("currency", "RUB")
+
     if currency.upper() == "RUB":
         return float(amount)  # если уже в рублях, ничего не делаем
 
