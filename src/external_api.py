@@ -1,33 +1,46 @@
-# external_api.py
+import os
 import requests
+from dotenv import load_dotenv
 
-# Прямое указание API ключа и URL
-API_KEY = "iNJjtsrCm8C6dmn9rsjbd42geeVAWmVD"
+# загружаем переменные из .env
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"
 
 
 def convert_transaction_to_rub(transaction: dict) -> float:
     """
-    Конвертирует транзакцию из валюты transaction['currency'] в рубли.
-
-    :param transaction: словарь {"amount": число, "currency": строка}
-    :return: сумма в рублях (float)
+    Конвертирует транзакцию из валюты transaction['operationAmount']['currency']['code'] в рубли.
+    При пустой или некорректной транзакции возвращает 0.
     """
-    amount = transaction.get("amount", 0)
-    currency = transaction.get("currency", "RUB")
+    op_amount = transaction.get("operationAmount")
+    if not op_amount:
+        return 0.0  # пропускаем пустые транзакции
 
-    if currency.upper() == "RUB":
-        return float(amount)  # если уже в рублях, ничего не делаем
+    amount_str = op_amount.get("amount")
+    currency_info = op_amount.get("currency", {})
+    currency_code = currency_info.get("code", "RUB")
 
-    params = {"from": currency.upper(), "to": "RUB", "amount": amount}
+    if amount_str is None:
+        return 0.0
+
+    try:
+        amount = float(amount_str)
+    except (ValueError, TypeError):
+        return 0.0
+
+    if currency_code.upper() == "RUB":
+        return amount  # уже в рублях
+
+    params = {"from": currency_code.upper(), "to": "RUB", "amount": amount}
     headers = {"apikey": API_KEY}
 
     try:
         response = requests.get(BASE_URL, headers=headers, params=params, timeout=5)
-        response.raise_for_status()  # выброс исключения при ошибке HTTP
+        response.raise_for_status()
         data = response.json()
-        # API возвращает результат в поле 'result'
         return float(data.get("result", 0))
     except (requests.RequestException, ValueError, KeyError) as e:
         print(f"Ошибка конвертации валюты: {e}")
-        return 0.0  # при ошибке возвращаем 0
+        return 0.0
