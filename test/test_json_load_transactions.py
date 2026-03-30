@@ -1,6 +1,7 @@
 import os
 import sys
 from unittest.mock import mock_open, patch
+
 from src.utils import load_transactions  # добавляем src в путь поиска модулей
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))

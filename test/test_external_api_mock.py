@@ -1,6 +1,7 @@
 import os
 import sys
 from unittest.mock import Mock, patch
+
 from src.external_api import convert_transaction_to_rub
 
 # Добавляем папку src в путь поиска модулей
