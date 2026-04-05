@@ -862,18 +862,18 @@ files = [
 
 [[package]]
 name = "tzdata"
-version = "2025.3"
+version = "2026.1"
 description = "Provider of IANA time zone data"
 optional = false
 python-versions = ">=2"
 groups = ["main"]
 markers = "sys_platform == \"win32\" or sys_platform == \"emscripten\""
 files = [
-    {file = "tzdata-2025.3-py2.py3-none-any.whl", hash = "sha256:06a47e5700f3081aab02b2e513160914ff0694bce9947d6b76ebd6bf57cfc5d1"},
-    {file = "tzdata-2025.3.tar.gz", hash = "sha256:de39c2ca5dc7b0344f2eba86f49d614019d29f060fc4ebc8a417896a620b56a7"},
+    {file = "tzdata-2026.1-py2.py3-none-any.whl", hash = "sha256:4b1d2be7ac37ceafd7327b961aa3a54e467efbdb563a23655fbfe0d39cfc42a9"},
+    {file = "tzdata-2026.1.tar.gz", hash = "sha256:67658a1903c75917309e753fdc349ac0efd8c27db7a0cb406a25be4840f87f98"},
 ]
 
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14"
-content-hash = "9542ec4c4bc5a511a1df26c644f04d8aeb7993f82f0feb69199f906e4acd6a5d"
+content-hash = "23de2e8a6e63d55c5401486185735bda6fc751bb454cc46cdc96648fa25d5824"
